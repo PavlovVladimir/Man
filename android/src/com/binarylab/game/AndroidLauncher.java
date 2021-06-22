@@ -1,10 +1,9 @@
-package com.mygdx.shitman;
+package com.binarylab.game;
 
 import android.os.Bundle;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import com.mygdx.shitman.ShitMan;
 
 public class AndroidLauncher extends AndroidApplication {
 	@Override

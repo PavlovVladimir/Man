@@ -1,8 +1,8 @@
-package com.mygdx.shitman.desktop;
+package com.binarylab.game.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.mygdx.shitman.ShitMan;
+import com.binarylab.game.ShitMan;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {
