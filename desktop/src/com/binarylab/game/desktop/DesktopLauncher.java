@@ -7,6 +7,8 @@ import com.binarylab.game.ShitMan;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+		config.width = 640;
+		config.height = 320;
 		new LwjglApplication(new ShitMan(), config);
 	}
 }

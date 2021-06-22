@@ -96,7 +96,7 @@ project(":core") {
         outputs.dir outputDir
         doLast {
             delete(outputDir)
-            TexturePacker.process(inputDir, outputDir, "codecar.pack")
+            TexturePacker.process(inputDir, outputDir, "man.pack")
         }
     }
 
