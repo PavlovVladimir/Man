@@ -1,5 +1,7 @@
 package com.binarylab.game.entities;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
@@ -56,6 +58,7 @@ public class Man {
             );
             if (manBounds.overlaps(shitBounds)) {
                 live--;
+                Gdx.app.log(TAG,"SHIT HAPPENS");
             }
             if (shit.position.y <= 0) {
                 shits.removeIndex(i);
@@ -63,7 +66,23 @@ public class Man {
         }
         shits.end();
 
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            position.x -= delta * Constants.PLAYER_MOVEMENT_SPEED;
+        } else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+            position.x += delta * Constants.PLAYER_MOVEMENT_SPEED;
+        }
+        ensureInBounds();
     }
+
+    private void ensureInBounds() {
+        if (position.x  < 0) {
+            position.x = 0;
+        }
+        if (position.x + Constants.TITLE_SIZE*2 > Gdx.graphics.getWidth()) {
+            position.x = Gdx.graphics.getWidth() - 64;
+        }
+    }
+
     public void render(SpriteBatch batch){
         TextureRegion region = Assets.instance.manAssets.standing;
 

@@ -33,4 +33,7 @@ public class Constants {
     public static final String GAME_OVER_MESSAGE = "Game Over. \n Try again!";
 
     public static final Vector2 SHIT_CENTER = new Vector2(16,16);
+    public static final float SHIT_SPAWNS_PER_SECOND = 3.0f;
+    public static final Vector2 SHIT_ACCELERATION = new Vector2(0, -30.0f);
+    public static final float PLAYER_MOVEMENT_SPEED = 200.0f;
 }

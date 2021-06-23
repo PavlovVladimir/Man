@@ -8,10 +8,16 @@ import com.binarylab.game.util.Constants;
 import com.binarylab.game.util.Utils;
 
 public class Shit {
-    final public Vector2 position;
+    public Vector2 position;
+    Vector2 velocity;
 
     public Shit(Vector2 position) {
         this.position = position;
+        this.velocity = new Vector2();
+    }
+    public void update(float delta) {
+        velocity.mulAdd(Constants.SHIT_ACCELERATION, delta);
+        position.mulAdd(velocity, delta);
     }
 
     public void render(SpriteBatch batch) {

@@ -1,6 +1,7 @@
 package com.binarylab.game;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
@@ -26,7 +27,31 @@ public class Level {
     }
 
     public void update(float delta) {
+
         man.update(delta);
+        if (MathUtils.random() < delta * Constants.SHIT_SPAWNS_PER_SECOND) {
+            Vector2 newShitPosition = new Vector2(
+                    MathUtils.random() * viewport.getWorldWidth(),
+                    viewport.getWorldHeight()
+            );
+            Shit newShit = new Shit(newShitPosition);
+            shits.add(newShit);
+        }
+
+        for (Shit shit : shits) {
+            shit.update(delta);
+        }
+
+        shits.begin();
+
+        // TODO: Remove any icicle completely off the bottom of the screen
+        for (int i = 0; i < shits.size; i++) {
+            if (shits.get(i).position.y < 0) {
+                shits.removeIndex(i);
+            }
+        }
+        // TODO: End removal session
+        shits.end();
     }
 
     public void render(SpriteBatch batch) {
@@ -69,6 +94,7 @@ public class Level {
         shits = new DelayedRemovalArray<>();
 
         shits.add(new Shit(new Vector2(100, 100)));
+
     }
 
 }
