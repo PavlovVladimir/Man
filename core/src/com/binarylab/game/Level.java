@@ -102,9 +102,6 @@ public class Level {
     private void initializeLevel() {
         man = new Man(new Vector2(Constants.WORLD_SIZE_WIDTH / 2, 0), this);
         shits = new DelayedRemovalArray<>();
-
-        shits.add(new Shit(new Vector2(100, 100)));
-
     }
 
 }

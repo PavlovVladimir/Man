@@ -27,12 +27,12 @@ public class GameOverOverlay {
         startTime = TimeUtils.nanoTime();
     }
 
-    public void render(SpriteBatch batch) {
-
+    public void render(SpriteBatch batch, int score) {
+        String gameOverMessage = Constants.GAME_OVER_MESSAGE + "\nScore: " + score;
         viewport.apply();
         batch.setProjectionMatrix(viewport.getCamera().combined);
         batch.begin();
-        font.draw(batch, Constants.GAME_OVER_MESSAGE, viewport.getWorldWidth() / 2, viewport.getWorldHeight() / 2.5f, 0, Align.center, false);
+        font.draw(batch, gameOverMessage, viewport.getWorldWidth() / 2, viewport.getWorldHeight() / 2.5f, 0, Align.center, false);
         batch.end();
     }
 }

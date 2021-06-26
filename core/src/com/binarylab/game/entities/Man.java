@@ -24,11 +24,13 @@ public class Man {
     private boolean move = true;
     private long shitStartTime;
 
+
     public Man(Vector2 spawnLocation, Level level) {
         this.spawnLocation = spawnLocation;
         this.level = level;
         position = new Vector2();
         velocity = new Vector2();
+
         init();
     }
 
@@ -44,14 +46,14 @@ public class Man {
 
     public void update(float delta) {
         Rectangle manBounds = new Rectangle(
-                position.x,// - Constants.TITLE_SIZE,
-                position.y,// + Constants.TITLE_SIZE,
-                32,
-                32
+                position.x + Constants.TILE_SIZE / 4,
+                position.y,
+                16,
+                Constants.TILE_SIZE * 3 / 4
         );
 
         DelayedRemovalArray<Shit> shits = level.getShits();
-        shits.begin();
+
         for (int i = 0; i < shits.size; i++) {
             Shit shit = shits.get(i);
             Rectangle shitBounds = new Rectangle(
@@ -64,16 +66,8 @@ public class Man {
                 lives--;
                 respawn();
                 shitStartTime = TimeUtils.nanoTime();
-//                if (lives > -1) {
-//                    respawn();
-//                }
-                Gdx.app.log(TAG, "SHIT HAPPENS");
             }
-//            if (shit.position.y <= -100) {
-//                shits.removeIndex(i);
-//            }
         }
-        shits.end();
 
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && move) {
             position.x -= delta * Constants.PLAYER_MOVEMENT_SPEED;
@@ -87,8 +81,8 @@ public class Man {
         if (position.x < 0) {
             position.x = 0;
         }
-        if (position.x + Constants.TILE_SIZE * 2 > Gdx.graphics.getWidth()) {
-            position.x = Gdx.graphics.getWidth() - 64;
+        if (position.x + Constants.TILE_SIZE > Gdx.graphics.getWidth()) {
+            position.x = Gdx.graphics.getWidth() - Constants.TILE_SIZE;
         }
     }
 
