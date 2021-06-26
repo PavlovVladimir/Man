@@ -14,12 +14,16 @@ public class Level {
     public static final String TAG = Level.class.getName();
     public Viewport viewport;
     Man man;
+    public int score;
     private DelayedRemovalArray<Shit> shits;
+    public boolean gameOver;
+    boolean addShit = true;
 
     public Level() {
         viewport = new ExtendViewport(Constants.WORLD_SIZE_WIDTH, Constants.WORLD_SIZE_HEGHT);
         man = new Man(new Vector2(Constants.WORLD_SIZE_WIDTH / 2, 0), this);
         shits = new DelayedRemovalArray<>();
+        score = 0;
     }
 
     public DelayedRemovalArray<Shit> getShits() {
@@ -27,9 +31,14 @@ public class Level {
     }
 
     public void update(float delta) {
+        if (man.getLives() < 0) {
+            gameOver = true;
+            man.setMove(false);
+            addShit = false;
+        }
 
         man.update(delta);
-        if (MathUtils.random() < delta * Constants.SHIT_SPAWNS_PER_SECOND) {
+        if (MathUtils.random() < delta * Constants.SHIT_SPAWNS_PER_SECOND && addShit) {
             Vector2 newShitPosition = new Vector2(
                     MathUtils.random() * viewport.getWorldWidth(),
                     viewport.getWorldHeight()
@@ -46,8 +55,9 @@ public class Level {
 
         // TODO: Remove any icicle completely off the bottom of the screen
         for (int i = 0; i < shits.size; i++) {
-            if (shits.get(i).position.y < 0) {
+            if (shits.get(i).position.y < -100) {
                 shits.removeIndex(i);
+                if (!gameOver){score++;}
             }
         }
         // TODO: End removal session

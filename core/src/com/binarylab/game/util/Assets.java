@@ -4,8 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetErrorListener;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 
 public class Assets implements Disposable, AssetErrorListener {
@@ -47,9 +49,17 @@ public class Assets implements Disposable, AssetErrorListener {
     public class ManAssets {
 
         public final AtlasRegion standing;
+        public final Animation animation;
 
         public ManAssets(TextureAtlas atlas) {
             standing = atlas.findRegion(Constants.STANDING);
+
+            Array<AtlasRegion> regions = new Array<>();
+            regions.add(atlas.findRegion(Constants.MAN1));
+            regions.add(atlas.findRegion(Constants.MAN2));
+            regions.add(atlas.findRegion(Constants.MAN3));
+            regions.add(atlas.findRegion(Constants.MAN4));
+animation = new Animation(Constants.LOOP_DURATION, regions, Animation.PlayMode.NORMAL);
         }
     }
 

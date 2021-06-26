@@ -12,9 +12,9 @@ public class Constants {
 
     public static final float WORLD_SIZE_HEGHT = 320;
     public static final float WORLD_SIZE_WIDTH = 640;
-    public static final float TITLE_SIZE = 32;
+    public static final float TILE_SIZE = 32;
 
-    public static final float GRAVITY = 10;
+    public static final float GRAVITY = 12;
 
     // Assets for Man
     public static final String STANDING = "man";
@@ -32,8 +32,17 @@ public class Constants {
     public static final String VICTORY_MESSAGE = "You are the Winner! \n Next level loading...";
     public static final String GAME_OVER_MESSAGE = "Game Over. \n Try again!";
 
-    public static final Vector2 SHIT_CENTER = new Vector2(16,16);
-    public static final float SHIT_SPAWNS_PER_SECOND = 3.0f;
+    public static final Vector2 SHIT_CENTER = new Vector2(32,32);
+    public static final float SHIT_SPAWNS_PER_SECOND = 5.0f;
     public static final Vector2 SHIT_ACCELERATION = new Vector2(0, -30.0f);
     public static final float PLAYER_MOVEMENT_SPEED = 200.0f;
+    public static final int INITIAL_LIVES = 3;
+    public static final float HUD_VIEWPORT_SIZE = 480;
+    public static final String HUD_SCORE_LABEL = "Score: ";
+    public static final float HUD_MARGIN = 20;
+    public static final String MAN1 = "man1";
+    public static final String MAN2 = "man2";
+    public static final String MAN3 = "man3";
+    public static final String MAN4 = "man4";
+    public static final float LOOP_DURATION = 0.25f;
 }
